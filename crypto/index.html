@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Поддержка в криптовалюте — SKVLENT</title>
+  <meta name="description" content="Крипто-реквизиты для доната: USDT TON, TRC20, ERC20. Быстро скопировать адрес одним кликом." />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #161920;
+      --text: #e6e9ef;
+      --muted: #a3a9b7;
+      --accent: #6dd3ff;
+      --accent-2: #8cffc7;
+      --border: #232735;
+      --danger: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #0d1014 0%, #0f1115 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0;
+      letter-spacing: 0.2px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    }
+    .chain {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .addr {
+      word-break: break-all;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+    button.copy {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #1b1f2a;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .04s ease, background .2s ease, border-color .2s ease;
+    }
+    button.copy:hover { background: #212636; }
+    button.copy:active { transform: translateY(1px); }
+    .note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      background: #19202b;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Поддержка в криптовалюте</h1>
+        <div class="subtitle">USDT на TON, TRC20 и ERC20. Нажмите «Скопировать» рядом с нужным адресом.</div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- USDT TON -->
+      <section class="card" aria-label="USDT TON">
+        <div class="chain">
+          <span class="badge">USDT • TON</span>
+          <div class="note">Проверьте сеть перед отправкой</div>
+        </div>
+        <div id="addr-ton" class="addr">UQBJT817MLdmnU9NdJfc2HO_Qv5v7O3a79lmvf_gDk7x347C</div>
+        <div class="actions">
+          <button class="copy" data-target="addr-ton" aria-label="Скопировать адрес USDT TON">Скопировать</button>
+        </div>
+      </section>
+
+      <!-- USDT TRC20 -->
+      <section class="card" aria-label="USDT TRC20">
+        <div class="chain">
+          <span class="badge">USDT • TRC20 (TRON)</span>
+          <div class="note">Проверьте сеть перед отправкой</div>
+        </div>
+        <div id="addr-trc20" class="addr">TS7tH6FzFkpWic2BQg9z4gX1mfPT7xEEiZ</div>
+        <div class="actions">
+          <button class="copy" data-target="addr-trc20" aria-label="Скопировать адрес USDT TRC20">Скопировать</button>
+        </div>
+      </section>
+
+      <!-- USDT ERC20 -->
+      <section class="card" aria-label="USDT ERC20">
+        <div class="chain">
+          <span class="badge">USDT • ERC20 (Ethereum)</span>
+          <div class="note">Проверьте сеть перед отправкой</div>
+        </div>
+        <div id="addr-erc20" class="addr">0xD457c6044E42981560f70fDdc527a2cBa472c001</div>
+        <div class="actions">
+          <button class="copy" data-target="addr-erc20" aria-label="Скопировать адрес USDT ERC20">Скопировать</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Спасибо за поддержку музыки 💙</span>
+      <span><a href="/">← Назад на donate.skvlent.com</a></span>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Адрес скопирован</div>
+
+  <script>
+    const toast = document.getElementById('toast');
+
+    function showToast(text = 'Скопировано') {
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast('Адрес скопирован')).catch(() => showToast('Не удалось скопировать'));
+      } else {
+        // Fallback для небезопасного контекста
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          const ok = document.execCommand('copy');
+          showToast(ok ? 'Адрес скопирован' : 'Не удалось скопировать');
+        } finally {
+          document.body.removeChild(ta);
+        }
+      }
+    }
+
+    document.querySelectorAll('button.copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-target');
+        const el = document.getElementById(id);
+        if (el) copyText(el.textContent.trim());
+      });
+    });
+  </script>
+</body>
+</html>
